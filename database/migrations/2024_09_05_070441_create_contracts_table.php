@@ -26,7 +26,6 @@ return new class extends Migration
             $table->boolean('is_employer_confirmed');
 
             $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

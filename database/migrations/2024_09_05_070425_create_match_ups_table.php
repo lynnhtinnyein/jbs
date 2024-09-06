@@ -19,10 +19,7 @@ return new class extends Migration
             $table->string('service_id');
 
             $table->unsignedBigInteger('freelancer_id');
-            $table->foreign('freelancer_id')->references('id')->on('users')->onDelete('cascade');
-
             $table->unsignedBigInteger('employer_id');
-            $table->foreign('employer_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('status');
             $table->timestamps();

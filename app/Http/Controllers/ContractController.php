@@ -42,13 +42,22 @@ class ContractController extends Controller
         $contractId = Contract::insertGetId([
             "match_id" => $request->matchId,
             "price" => $request->price,
-            "is_freelancer_confirmed" => $request->isFreelancerConfirmed,
-            "is_employer_confirmed" => $request->isEmployerConfirmed,
+            "accepted_by" => json_encode([$request->createdBy]),
             "deliverable" => $request->deliverable,
             "created_by" => $request->createdBy
         ]);
 
         return Contract::find($contractId);
+    }
+
+    public function accept(Request $request, $id) {
+        $oldContract = Contract::find($id);
+
+        Contract::where('id', $id)->update([
+            'accepted_by' => array_merge($oldContract->accepted_by, [$request->acceptedBy])
+        ]);
+
+        return Contract::find($id);
     }
 
     /**
@@ -57,14 +66,6 @@ class ContractController extends Controller
     public function show(Contract $contract)
     {
         return $contract;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Contract $contract)
-    {
-        //
     }
 
     /**

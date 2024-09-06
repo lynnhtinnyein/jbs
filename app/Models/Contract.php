@@ -19,6 +19,10 @@ class Contract extends Model
         'milestones'
     ];
 
+    protected $casts = [
+        'accepted_by' => 'json'
+    ];
+
     public function match()
     {
         return $this->belongsTo(MatchUp::class);

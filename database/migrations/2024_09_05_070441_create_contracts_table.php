@@ -22,8 +22,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->text('deliverable');
 
-            $table->boolean('is_freelancer_confirmed');
-            $table->boolean('is_employer_confirmed');
+            $table->json('accepted_by');
 
             $table->unsignedBigInteger('created_by');
 

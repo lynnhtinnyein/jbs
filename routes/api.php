@@ -27,6 +27,9 @@ Route::get('test', function () {
 
 Route::apiResource('/users', UserController::class);
 Route::apiResource('/matches', MatchUpController::class);
+
 Route::apiResource('/contracts', ContractController::class);
+Route::put('/contracts/{id}/accept', [ContractController::class, 'accept']);
+
 Route::apiResource('/milestones', MilestoneController::class);
 Route::apiResource('/tasks', TaskController::class);
